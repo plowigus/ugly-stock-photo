@@ -64,7 +64,7 @@ export default function App() {
             key={section.id}
             onClick={() => !isActive && setActiveSection(section.id)}
             className={cn(
-              "section-item relative border-r border-b border-neutral-800 transition-[flex-grow] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] overflow-hidden",
+              "section-item relative border-b border-neutral-800 md:border-r transition-[flex-grow] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] overflow-hidden",
               "w-full md:w-auto md:h-full",
               isActive ? "grow-10 cursor-default" : "grow hover:bg-neutral-900 cursor-pointer"
             )}

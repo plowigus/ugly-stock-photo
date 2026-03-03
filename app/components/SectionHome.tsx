@@ -59,7 +59,7 @@ export function SectionHome() {
                     </h1>
                 </div>
 
-                <div ref={textRef} className="max-w-md pb-4">
+                <div ref={textRef} className="max-w-md pb-4 pointer-events-auto">
                     <p className="text-xs sm:text-sm md:text-base font-mono uppercase tracking-widest border-l-2 border-white pl-4">
                         Raw. Unfiltered. Hardcore.
                         <br />

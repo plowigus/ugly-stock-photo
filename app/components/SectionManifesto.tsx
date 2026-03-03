@@ -61,18 +61,20 @@ export function SectionManifesto() {
                 />
             </div>
 
-            <div className="relative z-10 h-full flex flex-col justify-center max-w-4xl mx-auto overflow-hidden no-scrollbar">
-                <div className="py-8">
-                    <h2
-                        ref={titleRef}
-                        className="text-5xl sm:text-6xl md:text-8xl font-black uppercase mb-8 md:mb-12 tracking-tighter wrap-break-word"
-                    >
-                        ABOUT ME
-                    </h2>
+            <div className="max-w-6xl mx-auto w-full h-full overflow-hidden no-scrollbar">
+                <div className="py-8 flex flex-col h-full">
+                    <div className="flex justify-between items-end mb-8 md:mb-16">
+                        <h2
+                            ref={titleRef}
+                            className="text-5xl sm:text-6xl md:text-8xl font-black uppercase tracking-tighter"
+                        >
+                            ABOUT ME
+                        </h2>
+                    </div>
 
                     <div
                         ref={contentRef}
-                        className="space-y-6 md:space-y-8 font-mono text-base md:text-xl leading-relaxed"
+                        className="space-y-6 md:space-y-8 font-mono text-base md:text-xl leading-relaxed max-w-4xl"
                     >
                         <p>
                             WE REJECT THE POLISHED LIES OF MODERN STOCK PHOTOGRAPHY.

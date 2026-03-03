@@ -48,7 +48,7 @@ export function SectionContact() {
             <div className="flex-1 flex flex-col justify-center items-center overflow-hidden no-scrollbar w-full">
                 <h2
                     ref={headlineRef}
-                    className="text-4xl sm:text-5xl md:text-7xl font-black uppercase text-center tracking-tighter leading-none wrap-break-word w-full"
+                    className="text-5xl sm:text-6xl md:text-8xl font-black uppercase text-center tracking-tighter leading-none wrap-break-word w-full"
                 >
                     Let's<br />Make<br />Noise
                 </h2>

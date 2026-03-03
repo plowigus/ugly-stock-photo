@@ -51,18 +51,20 @@ export function SectionExpertise() {
     return (
         <div
             ref={containerRef}
-            className="relative w-full h-full flex flex-col justify-center p-6 md:p-12 bg-black text-white overflow-hidden"
+            className="relative w-full h-full flex flex-col p-6 md:p-12 bg-black text-white overflow-hidden"
         >
-            <div className="max-w-4xl mx-auto w-full h-full overflow-hidden no-scrollbar flex flex-col justify-center">
-                <div className="py-8">
-                    <h2
-                        ref={titleRef}
-                        className="text-4xl sm:text-5xl md:text-6xl font-black uppercase mb-6 md:mb-10 tracking-tighter text-left"
-                    >
-                        LET'S COLLAB
-                    </h2>
+            <div className="max-w-6xl mx-auto w-full h-full overflow-hidden no-scrollbar">
+                <div className="py-8 flex flex-col h-full">
+                    <div className="flex justify-between items-end mb-8 md:mb-16">
+                        <h2
+                            ref={titleRef}
+                            className="text-5xl sm:text-6xl md:text-8xl font-black uppercase tracking-tighter"
+                        >
+                            LET'S COLLAB
+                        </h2>
+                    </div>
 
-                    <div ref={listRef} className="space-y-0">
+                    <div ref={listRef} className="space-y-0 max-w-4xl">
                         {SERVICES.map((service, index) => (
                             <div
                                 key={index}
