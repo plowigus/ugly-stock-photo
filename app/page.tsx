@@ -90,7 +90,7 @@ export default function App() {
               </span>
 
               <div className="flex-1 flex items-center justify-center">
-                <span className="text-lg md:text-2xl font-black uppercase tracking-widest whitespace-nowrap [writing-mode:vertical-rl] rotate-180">
+                <span className="text-lg md:text-2xl font-black uppercase tracking-widest whitespace-nowrap md:[writing-mode:vertical-rl] md:rotate-180">
                   {section.title}
                 </span>
               </div>
