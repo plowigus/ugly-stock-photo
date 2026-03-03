@@ -1,65 +1,103 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/900.css";
+import "@fontsource/jetbrains-mono/400.css";
+import { useState, useRef } from 'react';
+import { gsap } from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { SectionHome } from './components/SectionHome';
+import { SectionManifesto } from './components/SectionManifesto';
+import { SectionWork } from './components/SectionWork';
+import { SectionExpertise } from './components/SectionExpertise';
+import { SectionContact } from './components/SectionContact';
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+// Rejestracja pluginu
+gsap.registerPlugin(useGSAP);
+
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+interface Section {
+  id: number;
+  label: string;
+  title: string;
+  component: React.ComponentType;
+}
+
+const SECTIONS: Section[] = [
+  { id: 0, label: '01', title: 'Home', component: SectionHome },
+  { id: 1, label: '02', title: 'About me', component: SectionManifesto },
+  { id: 2, label: '03', title: 'Work', component: SectionWork },
+  { id: 3, label: '04', title: 'Collab', component: SectionExpertise },
+  { id: 4, label: '05', title: 'Contact', component: SectionContact },
+];
+
+export default function App() {
+  const [activeSection, setActiveSection] = useState<number>(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Animacja GSAP zastępująca motion.div layout
+  useGSAP(() => {
+    // GSAP obsłuży płynne przejście flex-grow
+    gsap.to(".section-item", {
+      duration: 0.6,
+      ease: "expo.out",
+      overwrite: "auto",
+    });
+  }, { dependencies: [activeSection], scope: containerRef });
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div
+      ref={containerRef}
+      className="h-screen w-screen bg-black text-white overflow-hidden flex flex-col md:flex-row font-sans selection:bg-white selection:text-black"
+    >
+      {SECTIONS.map((section) => {
+        const isActive = activeSection === section.id;
+        const Component = section.component;
+
+        return (
+          <div
+            key={section.id}
+            onClick={() => !isActive && setActiveSection(section.id)}
+            className={cn(
+              "section-item relative border-r border-b border-neutral-800 transition-[flex-grow] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] overflow-hidden",
+              "w-full md:w-auto md:h-full",
+              isActive ? "grow-10 cursor-default" : "grow hover:bg-neutral-900 cursor-pointer"
+            )}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+            {/* Expanded Content */}
+            <div
+              className={cn(
+                "absolute inset-0 w-full h-full transition-opacity duration-500",
+                isActive ? "opacity-100 pointer-events-auto delay-300" : "opacity-0 pointer-events-none"
+              )}
+            >
+              {/* Renderujemy komponent tylko gdy aktywny lub używamy CSS do ukrycia */}
+              {isActive && <Component />}
+            </div>
+
+            {/* Collapsed / Label View */}
+            <div className={cn(
+              "absolute inset-0 w-full h-full flex md:flex-col items-center justify-between p-4 md:py-8 transition-opacity duration-300",
+              isActive ? "opacity-0 pointer-events-none" : "opacity-100"
+            )}>
+              <span className="font-mono text-xs md:text-sm font-bold text-neutral-500 md:mb-8">
+                {section.label}
+              </span>
+
+              <div className="flex-1 flex items-center justify-center">
+                <span className="text-lg md:text-2xl font-black uppercase tracking-widest whitespace-nowrap [writing-mode:vertical-rl] rotate-180">
+                  {section.title}
+                </span>
+              </div>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
