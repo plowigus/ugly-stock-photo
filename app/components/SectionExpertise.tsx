@@ -51,14 +51,14 @@ export function SectionExpertise() {
     return (
         <div
             ref={containerRef}
-            className="relative w-full h-full flex flex-col p-6 md:p-12 bg-black text-white overflow-hidden"
+            className="relative w-full h-full flex flex-col p-6 xl:p-12 bg-black text-white overflow-hidden"
         >
             <div className="max-w-6xl mx-auto w-full h-full overflow-hidden no-scrollbar">
                 <div className="py-8 flex flex-col h-full">
-                    <div className="flex justify-between items-end mb-8 md:mb-16">
+                    <div className="flex justify-between items-end mb-8 xl:mb-16">
                         <h2
                             ref={titleRef}
-                            className="text-5xl sm:text-6xl md:text-8xl font-black uppercase tracking-tighter"
+                            className="text-5xl sm:text-6xl xl:text-8xl font-black uppercase tracking-tighter"
                         >
                             LET'S COLLAB
                         </h2>
@@ -68,12 +68,12 @@ export function SectionExpertise() {
                         {SERVICES.map((service, index) => (
                             <div
                                 key={index}
-                                className="service-item flex flex-col md:flex-row justify-between items-start md:items-end border-b border-white py-4 md:py-5 group hover:bg-neutral-900 transition-colors px-4 cursor-crosshair"
+                                className="service-item flex flex-col xl:flex-row justify-between items-start xl:items-end border-b border-white py-4 xl:py-5 group hover:bg-neutral-900 transition-colors px-4 cursor-crosshair"
                             >
-                                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold uppercase tracking-tight">
+                                <h3 className="text-xl sm:text-2xl xl:text-3xl font-bold uppercase tracking-tight">
                                     {service.title}
                                 </h3>
-                                <p className="font-mono text-xs sm:text-xs md:text-sm mt-2 md:mt-0 uppercase tracking-widest text-neutral-400 group-hover:text-white transition-colors md:w-56 md:shrink-0 md:text-left">
+                                <p className="font-mono text-xs sm:text-xs xl:text-sm mt-2 xl:mt-0 uppercase tracking-widest text-neutral-400 group-hover:text-white transition-colors xl:w-56 xl:shrink-0 xl:text-left">
                                     {service.desc}
                                 </p>
                             </div>

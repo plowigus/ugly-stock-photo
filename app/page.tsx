@@ -53,7 +53,7 @@ export default function App() {
   return (
     <main
       ref={containerRef}
-      className="h-dvh w-screen bg-black text-white overflow-hidden flex flex-col md:flex-row font-sans selection:bg-white selection:text-black"
+      className="h-dvh w-screen bg-black text-white overflow-hidden flex flex-col xl:flex-row font-sans selection:bg-white selection:text-black"
     >
       {SECTIONS.map((section) => {
         const isActive = activeSection === section.id;
@@ -64,11 +64,16 @@ export default function App() {
             key={section.id}
             onClick={() => !isActive && setActiveSection(section.id)}
             className={cn(
-              "section-item relative border-b border-neutral-800 md:border-r transition-[flex-grow] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] overflow-hidden",
-              "w-full md:w-auto md:h-full",
-              isActive ? "grow-10 cursor-default" : "grow hover:bg-neutral-900 cursor-pointer"
+              "section-item group relative border-b border-neutral-800 xl:border-r transition-[flex-grow] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] overflow-hidden",
+              "w-full xl:w-auto xl:h-full",
+              isActive ? "grow-10 cursor-default" : "grow cursor-pointer"
             )}
           >
+            {/* Hover Background Effect */}
+            {!isActive && (
+              <div className="absolute inset-x-0 bottom-0 h-0 group-hover:h-full bg-neutral-900/50 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] pointer-events-none" />
+            )}
+
             {/* Expanded Content */}
             <div
               className={cn(
@@ -82,15 +87,15 @@ export default function App() {
 
             {/* Collapsed / Label View */}
             <div className={cn(
-              "absolute inset-0 w-full h-full flex md:flex-col items-center justify-between p-4 md:py-8 transition-opacity duration-300",
+              "absolute inset-0 w-full h-full flex xl:flex-col items-center justify-between p-4 xl:py-8 transition-opacity duration-300",
               isActive ? "opacity-0 pointer-events-none" : "opacity-100"
             )}>
-              <span className="font-mono text-xs md:text-sm font-bold text-white md:mb-8">
+              <span className="font-mono text-xs xl:text-sm font-bold text-white xl:mb-8 transition-transform duration-500 group-hover:-translate-y-1">
                 {section.label}
               </span>
 
               <div className="flex-1 flex items-center justify-center">
-                <span className="text-lg md:text-2xl font-black uppercase tracking-widest whitespace-nowrap md:[writing-mode:vertical-rl] md:rotate-180">
+                <span className="text-lg xl:text-2xl font-black uppercase tracking-widest whitespace-nowrap xl:[writing-mode:vertical-rl] xl:rotate-180 transition-transform duration-500 group-hover:scale-110">
                   {section.title}
                 </span>
               </div>

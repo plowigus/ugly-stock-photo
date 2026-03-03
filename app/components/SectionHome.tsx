@@ -34,7 +34,7 @@ export function SectionHome() {
     return (
         <div
             ref={containerRef}
-            className="relative w-full h-full flex flex-col justify-between p-6 md:p-12 overflow-hidden bg-black text-white"
+            className="relative w-full h-full flex flex-col justify-between p-6 xl:p-12 overflow-hidden bg-black text-white"
         >
             {/* Background Image with Overlay */}
             <div ref={bgRef} className="absolute inset-0 z-0 opacity-40 select-none pointer-events-none">
@@ -50,7 +50,7 @@ export function SectionHome() {
 
             <div className="relative z-10 flex flex-col h-full justify-between pointer-events-none overflow-hidden no-scrollbar">
                 <div ref={titleRef} className="uppercase tracking-tighter pt-4">
-                    <h1 className="text-6xl sm:text-8xl md:text-9xl font-black leading-none tracking-tighter">
+                    <h1 className="text-6xl sm:text-8xl xl:text-9xl font-black leading-none tracking-tighter">
                         UGLY
                         <br />
                         STOCK
@@ -60,7 +60,7 @@ export function SectionHome() {
                 </div>
 
                 <div ref={textRef} className="max-w-md pb-4 pointer-events-auto">
-                    <p className="text-xs sm:text-sm md:text-base font-mono uppercase tracking-widest border-l-2 border-white pl-4">
+                    <p className="text-xs sm:text-sm xl:text-base font-mono uppercase tracking-widest border-l-2 border-white pl-4">
                         Raw. Unfiltered. Hardcore.
                         <br />
                         No technical shapes.

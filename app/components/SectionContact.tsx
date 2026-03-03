@@ -43,12 +43,12 @@ export function SectionContact() {
     return (
         <div
             ref={containerRef}
-            className="relative w-full h-full flex flex-col justify-between p-6 md:p-12 bg-black text-white overflow-hidden"
+            className="relative w-full h-full flex flex-col justify-between p-6 xl:p-12 bg-black text-white overflow-hidden"
         >
             <div className="flex-1 flex flex-col justify-center items-center overflow-hidden no-scrollbar w-full">
                 <h2
                     ref={headlineRef}
-                    className="text-5xl sm:text-6xl md:text-8xl font-black uppercase text-center tracking-tighter leading-none wrap-break-word w-full"
+                    className="text-5xl sm:text-6xl xl:text-8xl font-black uppercase text-center tracking-tighter leading-none wrap-break-word w-full"
                 >
                     Let's<br />Make<br />Noise
                 </h2>
@@ -56,7 +56,7 @@ export function SectionContact() {
                 <a
                     ref={emailRef}
                     href="mailto:vincent@uglystock.com"
-                    className="mt-6 md:mt-8 text-sm sm:text-base md:text-xl font-mono border-b-2 border-white pb-2 hover:bg-white hover:text-black transition-all px-4 break-all"
+                    className="mt-6 xl:mt-8 text-sm sm:text-base xl:text-xl font-mono border-b-2 border-white pb-2 hover:bg-white hover:text-black transition-all px-4 break-all"
                 >
                     contact@uglystock.com
                 </a>

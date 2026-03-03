@@ -84,19 +84,19 @@ export function SectionWork() {
     return (
         <div
             ref={containerRef}
-            className="relative w-full h-full flex flex-col p-6 md:p-12 bg-black text-white overflow-hidden"
+            className="relative w-full h-full flex flex-col p-6 xl:p-12 bg-black text-white overflow-hidden"
         >
             <div className="max-w-6xl mx-auto w-full h-full overflow-hidden no-scrollbar">
                 <div className="py-8 flex flex-col h-full">
-                    <div className="flex justify-between items-end mb-8 md:mb-16">
+                    <div className="flex justify-between items-end mb-8 xl:mb-16">
                         <h2
                             ref={titleRef}
-                            className="text-5xl sm:text-6xl md:text-8xl font-black uppercase tracking-tight"
+                            className="text-5xl sm:text-6xl xl:text-8xl font-black uppercase tracking-tight"
                         >
                             Selected Works
                         </h2>
 
-                        <div className="nav-controls hidden md:flex gap-4 mb-2 md:mb-4">
+                        <div className="nav-controls hidden xl:flex gap-4 mb-2 xl:mb-4">
                             <button
                                 onClick={prevSlide}
                                 className="p-3 border cursor-pointer border-white hover:bg-white hover:text-black transition-colors"
@@ -114,13 +114,13 @@ export function SectionWork() {
 
                     {/* Embla Viewport */}
                     <div className="embla relative flex-1 min-h-0 overflow-hidden" ref={emblaRef}>
-                        <div className="embla__container flex h-full -mx-4 md:-mx-8">
+                        <div className="embla__container flex h-full -mx-4 xl:-mx-8">
                             {WORKS.map((work, index) => {
                                 const isActive = currentIndex === index;
                                 return (
                                     <div
                                         key={work.id}
-                                        className="embla__slide relative min-w-full h-full px-4 md:px-9"
+                                        className="embla__slide relative min-w-full h-full px-4 xl:px-9"
                                     >
                                         <div
                                             className={cn(
@@ -146,33 +146,33 @@ export function SectionWork() {
 
                                             <div className={cn(
                                                 "absolute inset-0 bg-black/60 transition-opacity duration-500 flex flex-col justify-center items-center p-4 text-center",
-                                                "md:opacity-0 md:group-hover:opacity-100",
+                                                "xl:opacity-0 xl:group-hover:opacity-100",
                                                 isActive ? "opacity-100" : "opacity-0"
                                             )}>
                                                 <div className="overflow-hidden">
                                                     <span className={cn(
-                                                        "block text-4xl sm:text-6xl md:text-8xl font-black uppercase tracking-tighter transform transition-transform duration-500 delay-100",
-                                                        "md:translate-y-full md:group-hover:translate-y-0",
+                                                        "block text-4xl sm:text-6xl xl:text-8xl font-black uppercase tracking-tighter transform transition-transform duration-500 delay-100",
+                                                        "xl:translate-y-full xl:group-hover:translate-y-0",
                                                         isActive ? "translate-y-0" : "translate-y-full"
                                                     )}>
                                                         {work.title}
                                                     </span>
                                                 </div>
                                                 <span className={cn(
-                                                    "text-xs md:text-base font-mono mt-4 uppercase tracking-[0.3em] transition-opacity duration-700 delay-300",
-                                                    "md:opacity-0 md:group-hover:opacity-100",
+                                                    "text-xs xl:text-base font-mono mt-4 uppercase tracking-[0.3em] transition-opacity duration-700 delay-300",
+                                                    "xl:opacity-0 xl:group-hover:opacity-100",
                                                     isActive ? "opacity-100" : "opacity-0"
                                                 )}>
                                                     {work.type}
                                                 </span>
                                                 <ArrowUpRight className={cn(
-                                                    "mt-8 w-8 h-8 md:w-12 md:h-12 transition-opacity duration-700 delay-500",
-                                                    "md:opacity-0 md:group-hover:opacity-100",
+                                                    "mt-8 w-8 h-8 xl:w-12 xl:h-12 transition-opacity duration-700 delay-500",
+                                                    "xl:opacity-0 xl:group-hover:opacity-100",
                                                     isActive ? "opacity-100" : "opacity-0"
                                                 )} />
                                             </div>
 
-                                            <div className="absolute bottom-8 right-8 font-mono text-xl md:text-2xl font-bold">
+                                            <div className="absolute bottom-8 right-8 font-mono text-xl xl:text-2xl font-bold">
                                                 {index + 1} / {WORKS.length}
                                             </div>
                                         </div>

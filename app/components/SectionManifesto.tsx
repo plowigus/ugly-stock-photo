@@ -49,7 +49,7 @@ export function SectionManifesto() {
     return (
         <div
             ref={containerRef}
-            className="relative w-full h-full flex flex-col p-6 md:p-12 bg-black text-white overflow-hidden"
+            className="relative w-full h-full flex flex-col p-6 xl:p-12 bg-black text-white overflow-hidden"
         >
             {/* Texture Background */}
             <div ref={textureRef} className="absolute inset-0 z-0 opacity-20 pointer-events-none select-none">
@@ -63,10 +63,10 @@ export function SectionManifesto() {
 
             <div className="max-w-6xl mx-auto w-full h-full overflow-hidden no-scrollbar">
                 <div className="py-8 flex flex-col h-full">
-                    <div className="flex justify-between items-end mb-8 md:mb-16">
+                    <div className="flex justify-between items-end mb-8 xl:mb-16">
                         <h2
                             ref={titleRef}
-                            className="text-5xl sm:text-6xl md:text-8xl font-black uppercase tracking-tighter"
+                            className="text-5xl sm:text-6xl xl:text-8xl font-black uppercase tracking-tighter"
                         >
                             ABOUT ME
                         </h2>
@@ -74,7 +74,7 @@ export function SectionManifesto() {
 
                     <div
                         ref={contentRef}
-                        className="space-y-6 md:space-y-8 font-mono text-base md:text-xl leading-relaxed max-w-4xl"
+                        className="space-y-6 xl:space-y-8 font-mono text-base xl:text-xl leading-relaxed max-w-4xl"
                     >
                         <p>
                             WE REJECT THE POLISHED LIES OF MODERN STOCK PHOTOGRAPHY.
