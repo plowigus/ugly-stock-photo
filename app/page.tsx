@@ -53,7 +53,7 @@ export default function App() {
   return (
     <div
       ref={containerRef}
-      className="h-screen w-screen bg-black text-white overflow-hidden flex flex-col md:flex-row font-sans selection:bg-white selection:text-black"
+      className="h-[100dvh] w-screen bg-black text-white overflow-hidden flex flex-col md:flex-row font-sans selection:bg-white selection:text-black"
     >
       {SECTIONS.map((section) => {
         const isActive = activeSection === section.id;
