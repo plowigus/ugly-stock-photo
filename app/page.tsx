@@ -51,7 +51,7 @@ export default function App() {
   }, { dependencies: [activeSection], scope: containerRef });
 
   return (
-    <div
+    <main
       ref={containerRef}
       className="h-dvh w-screen bg-black text-white overflow-hidden flex flex-col md:flex-row font-sans selection:bg-white selection:text-black"
     >
@@ -85,7 +85,7 @@ export default function App() {
               "absolute inset-0 w-full h-full flex md:flex-col items-center justify-between p-4 md:py-8 transition-opacity duration-300",
               isActive ? "opacity-0 pointer-events-none" : "opacity-100"
             )}>
-              <span className="font-mono text-xs md:text-sm font-bold text-neutral-500 md:mb-8">
+              <span className="font-mono text-xs md:text-sm font-bold text-white md:mb-8">
                 {section.label}
               </span>
 
@@ -98,6 +98,6 @@ export default function App() {
           </div>
         );
       })}
-    </div>
+    </main>
   );
 }
