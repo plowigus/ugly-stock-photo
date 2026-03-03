@@ -37,6 +37,7 @@ export function SectionWork() {
         loop: true,
         duration: 30, // Smoother glide
         skipSnaps: false,
+        align: 'center',
     });
 
     const onSelect = useCallback(() => {
@@ -61,7 +62,7 @@ export function SectionWork() {
     // Entry Animation
     useGSAP(() => {
         const tl = gsap.timeline({
-            defaults: { ease: "power4.out", duration: 0.1 }
+            defaults: { ease: "power4.out", duration: 1 }
         });
 
         tl.fromTo([titleRef.current, ".nav-controls"],
@@ -69,13 +70,12 @@ export function SectionWork() {
             { opacity: 1, y: 0, stagger: 0.1 }
         )
             .fromTo(".work-card",
-                { opacity: 0, scale: 0.9, y: 20 },
+                { opacity: 0, y: 20 },
                 {
                     opacity: 1,
-                    scale: 1,
                     y: 0,
                     stagger: 0.05,
-                    duration: 0.8
+                    duration: 0.1
                 },
                 "-=0.6"
             );
@@ -91,7 +91,7 @@ export function SectionWork() {
                     <div className="flex justify-between items-end mb-8 md:mb-16">
                         <h2
                             ref={titleRef}
-                            className="text-5xl sm:text-6xl md:text-8xl font-black uppercase tracking-tighter"
+                            className="text-5xl sm:text-6xl md:text-8xl font-black uppercase tracking-tight"
                         >
                             Selected Works
                         </h2>
@@ -99,13 +99,13 @@ export function SectionWork() {
                         <div className="nav-controls hidden md:flex gap-4 mb-2 md:mb-4">
                             <button
                                 onClick={prevSlide}
-                                className="p-3 border border-white hover:bg-white hover:text-black transition-colors"
+                                className="p-3 border cursor-pointer border-white hover:bg-white hover:text-black transition-colors"
                             >
                                 <ChevronLeft size={24} />
                             </button>
                             <button
                                 onClick={nextSlide}
-                                className="p-3 border border-white hover:bg-white hover:text-black transition-colors"
+                                className="p-3 border cursor-pointer border-white hover:bg-white hover:text-black transition-colors"
                             >
                                 <ChevronRight size={24} />
                             </button>
@@ -114,17 +114,17 @@ export function SectionWork() {
 
                     {/* Embla Viewport */}
                     <div className="embla relative flex-1 min-h-0 overflow-hidden" ref={emblaRef}>
-                        <div className="embla__container flex h-full">
+                        <div className="embla__container flex h-full -mx-4 md:-mx-8">
                             {WORKS.map((work, index) => {
                                 const isActive = currentIndex === index;
                                 return (
                                     <div
                                         key={work.id}
-                                        className="embla__slide relative min-w-full h-full"
+                                        className="embla__slide relative min-w-full h-full px-4 md:px-9"
                                     >
                                         <div
                                             className={cn(
-                                                "work-card group relative w-full h-full bg-neutral-900 border border-neutral-800 overflow-hidden cursor-pointer transition-all duration-500 will-change-transform",
+                                                "work-card group relative w-full h-full bg-neutral-900 border border-neutral-800 px-px overflow-hidden cursor-pointer transition-all duration-500 will-change-transform",
                                                 isActive && "ring-1 ring-inset ring-white/20"
                                             )}
                                             onClick={() => emblaApi?.scrollTo(index)}
@@ -139,8 +139,8 @@ export function SectionWork() {
                                                 fill
                                                 priority={index === 0}
                                                 className={cn(
-                                                    "object-cover grayscale contrast-125 transition-transform duration-700 md:group-hover:scale-110",
-                                                    isActive && "scale-110 md:scale-100"
+                                                    "object-cover grayscale contrast-125 transition-transform duration-700",
+                                                    isActive && ""
                                                 )}
                                             />
 
