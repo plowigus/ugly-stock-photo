@@ -54,8 +54,8 @@ export function SectionHome() {
                         className="text-6xl sm:text-8xl leading-none tracking-tighter"
                         style={{
                             fontFamily: "'ToughHorror', sans-serif",
-                            fontSize: 'clamp(3.75rem, 10vw, 160px)',
-                            letterSpacing: 'clamp(0px, 1vw, 12px)',
+                            fontSize: 'clamp(5.5rem, 15vw, 160px)',
+                            letterSpacing: 'clamp(0px, 1.5vw, 12px)',
                         }}
                     >
                         UGLY
