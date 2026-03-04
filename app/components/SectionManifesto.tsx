@@ -54,7 +54,7 @@ export function SectionManifesto() {
             {/* Texture Background */}
             <div ref={textureRef} className="absolute inset-0 z-0 opacity-20 pointer-events-none select-none">
                 <Image
-                    src="https://images.unsplash.com/photo-1715759406117-76aeee4281a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncml0dHklMjB1cmJhbiUyMHRleHR1cmUlMjBibGFjayUyMGFuZCUyMHdoaXRlfGVufDF8fHx8MTc3MjU1NTczNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                    src="/about-photo.jpg"
                     alt="Texture"
                     fill
                     className="object-cover"

@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import { Mail, Instagram, Twitter } from 'lucide-react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -9,6 +10,7 @@ export function SectionContact() {
     const containerRef = useRef<HTMLDivElement>(null);
     const headlineRef = useRef<HTMLHeadingElement>(null);
     const emailRef = useRef<HTMLAnchorElement>(null);
+    const bgRef = useRef<HTMLDivElement>(null);
     const footerRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
@@ -16,20 +18,27 @@ export function SectionContact() {
             defaults: { ease: "expo.out", duration: 1 }
         });
 
-        // 1. "Pulsujące" wejście głównego hasła
-        tl.fromTo(headlineRef.current,
-            { opacity: 0, scale: 0.85, filter: "blur(10px)" },
-            { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.2 }
+        // 1. Wejście tła
+        tl.fromTo(bgRef.current,
+            { opacity: 0, scale: 1.1 },
+            { opacity: 0.3, scale: 1, duration: 2 }
         );
 
-        // 2. Wjazd maila z dołu
+        // 2. "Pulsujące" wejście głównego hasła
+        tl.fromTo(headlineRef.current,
+            { opacity: 0, scale: 0.85, filter: "blur(10px)" },
+            { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.2 },
+            "-=1.5"
+        );
+
+        // 3. Wjazd maila z dołu
         tl.fromTo(emailRef.current,
             { opacity: 0, y: 30 },
             { opacity: 1, y: 0 },
             "-=0.8"
         );
 
-        // 3. Ikony social media i stopka - kaskadowo (stagger)
+        // 4. Ikony social media i stopka - kaskadowo (stagger)
         const footerElements = footerRef.current?.children;
         if (footerElements) {
             tl.fromTo(footerElements,
@@ -45,7 +54,18 @@ export function SectionContact() {
             ref={containerRef}
             className="relative w-full h-full flex flex-col justify-between p-6 xl:p-12 bg-black text-white overflow-hidden"
         >
-            <div className="flex-1 flex flex-col justify-center items-center overflow-hidden no-scrollbar w-full">
+            {/* Background Image */}
+            <div ref={bgRef} className="absolute inset-0  z-0 opacity-30 select-none pointer-events-none">
+                <Image
+                    src="/contact-photo.jpg"
+                    alt="Contact Background"
+                    fill
+                    className="object-cover contrast-100"
+                />
+                <div className="absolute inset-0 bg-black/10 mix-blend-color-burn" />
+            </div>
+
+            <div className="relative z-10 flex-1 flex flex-col justify-center items-center w-full">
                 <h2
                     ref={headlineRef}
                     className="text-5xl sm:text-6xl xl:text-8xl font-black uppercase text-center tracking-tighter leading-none wrap-break-word w-full"
