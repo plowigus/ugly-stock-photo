@@ -120,10 +120,10 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
             className="fixed inset-0 z-50 bg-black flex flex-col focus:outline-none"
         >
 
-            <div className="shrink-0 flex items-center justify-between px-5 sm:px-8 py-4 border-b border-neutral-800">
-                <span className="font-mono text-xs text-neutral-500 uppercase tracking-widest hidden sm:block">
+            <div className="shrink-0 flex items-center justify-end px-5 sm:px-8 py-4 border-b border-neutral-800">
+                {/* <span className="font-mono text-xs text-neutral-500 uppercase tracking-widest hidden sm:block">
                     UGLYSTOCK — GALLERY VIEW
-                </span>
+                </span> */}
 
                 <div className="flex items-center gap-6 mx-auto sm:mx-0 sm:hidden">
                     {items.map((_, i) => (
