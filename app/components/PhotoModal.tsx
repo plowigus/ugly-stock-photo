@@ -185,7 +185,7 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                         <h2 className="font-black uppercase tracking-tighter text-2xl sm:text-3xl leading-tight mb-2 italic">
                             {displayItem.title}
                         </h2>
-                        <p className="font-mono text-xs text-neutral-400 mb-8 sm:mb-6">
+                        <p className="font-mono text-xs uppercase text-neutral-400 mb-8 sm:mb-6">
                             [{displayItem.type}]
                         </p>
 
