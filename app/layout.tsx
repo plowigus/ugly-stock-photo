@@ -20,6 +20,18 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "UGLY STOCK PHOTO",
   description: "Raw photography and edgy design",
+  icons: {
+    icon: [
+      {
+        url: "/favicon-black.png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/favicon-white.png",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+  },
 };
 
 export const viewport = {
