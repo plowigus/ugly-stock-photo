@@ -40,7 +40,7 @@ export function SectionHome() {
             <div ref={bgRef} className="absolute inset-0 z-0 opacity-50 select-none pointer-events-none">
                 <Image
                     src="/hero_photo.jpg"
-                    alt="Ugly Stock Photo"
+                    alt="UGLY STOCK PHOTO - Fotograf koncertowy Katowice | HC | Raw Gig | Photography"
                     fill
                     priority
                     className="object-cover grayscale contrast-125 brightness-100"

@@ -19,7 +19,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "UGLY STOCK PHOTO — HC Photographer",
+    default: "UGLY STOCK PHOTO | HC Photographer | Katowice",
     template: "%s | UGLY STOCK PHOTO"
   },
   description: "Surowa estetyka, mrok i energia sceny. UGLY STOCK PHOTO to portfolio fotografa z Katowic specjalizującego się w bezkompromisowej fotografii koncertowej i sesjach kapel..",
@@ -104,14 +104,14 @@ export default function RootLayout({
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "",
-                "addressLocality": "Kraków",
+                "addressLocality": "Katowice",
                 "postalCode": "",
                 "addressCountry": "PL"
               },
               "geo": {
                 "@type": "GeoCoordinates",
-                "latitude": 50.0647,
-                "longitude": 19.9450
+                "latitude": 50.2649,
+                "longitude": 19.0238
               },
               "description": "Surowa estetyka, mrok i energia sceny. UGLY STOCK PHOTO to portfolio fotografa z Katowic specjalizującego się w bezkompromisowej fotografii koncertowej i sesjach kapel.",
               "openingHoursSpecification": {
@@ -127,7 +127,7 @@ export default function RootLayout({
                 "closes": "23:59"
               },
               "sameAs": [
-                "https://www.instagram.com/uglystockphoto"
+                "https://www.instagram.com/lowigus.a/"
               ]
             })
           }}

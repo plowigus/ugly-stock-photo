@@ -55,7 +55,7 @@ export function SectionManifesto() {
             <div ref={textureRef} className="absolute inset-0 z-0 opacity-20 pointer-events-none select-none">
                 <Image
                     src="/about-photo.jpg"
-                    alt="Texture"
+                    alt="UGLY STOCK PHOTO - Autentyczna fotografia koncertowa | HC | Katowice"
                     fill
                     className="object-cover"
                 />
