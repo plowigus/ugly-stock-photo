@@ -40,11 +40,17 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
     const contentRef = useRef<HTMLDivElement>(null);
     const [displayItem, setDisplayItem] = useState<WorkItem | null>(null);
     const [isDragging, setIsDragging] = useState(false);
+    const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
 
     const [emblaRef, emblaApi] = useEmblaCarousel({
         loop: true,
         align: 'start',
         containScroll: 'trimSnaps'
+    });
+
+    const [emblaFullRef, emblaFullApi] = useEmblaCarousel({
+        loop: true,
+        align: 'center',
     });
 
 
@@ -58,11 +64,38 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
         emblaApi.on('pointerDown', onPointerDown);
         emblaApi.on('pointerUp', onPointerUp);
 
+        // Sync main -> full
+        const onSelect = () => {
+            if (emblaFullApi && isFullscreenOpen) {
+                const targetIndex = emblaApi.selectedScrollSnap();
+                if (emblaFullApi.selectedScrollSnap() !== targetIndex) {
+                    emblaFullApi.scrollTo(targetIndex, true);
+                }
+            }
+        };
+        emblaApi.on('select', onSelect);
+
         return () => {
             emblaApi.off('pointerDown', onPointerDown);
             emblaApi.off('pointerUp', onPointerUp);
+            emblaApi.off('select', onSelect);
         };
-    }, [activeIndex, emblaApi]);
+    }, [activeIndex, emblaApi, emblaFullApi, isFullscreenOpen]);
+
+    // Sync full -> main
+    useEffect(() => {
+        if (!emblaFullApi || !emblaApi) return;
+        const onFullSelect = () => {
+            const targetIndex = emblaFullApi.selectedScrollSnap();
+            if (emblaApi.selectedScrollSnap() !== targetIndex) {
+                emblaApi.scrollTo(targetIndex, true);
+            }
+        };
+        emblaFullApi.on('select', onFullSelect);
+        return () => {
+            emblaFullApi.off('select', onFullSelect);
+        };
+    }, [emblaApi, emblaFullApi]);
 
 
     const handleKey = useCallback((e: KeyboardEvent) => {
@@ -199,7 +232,18 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                                     displayItem.imagesAlt?.[idx] ||
                                     `${displayItem.title} - frame ${idx + 1}`;
                                 return (
-                                    <div key={idx} className="embla__slide relative flex-[0_0_auto] h-full mx-0">
+                                    <div
+                                        key={idx}
+                                        className="embla__slide relative flex-[0_0_auto] h-full mx-0 cursor-pointer lg:cursor-default"
+                                        onClick={() => {
+                                            if (window.innerWidth < 1024) {
+                                                setIsFullscreenOpen(true);
+                                                setTimeout(() => {
+                                                    emblaFullApi?.scrollTo(idx, true);
+                                                }, 50);
+                                            }
+                                        }}
+                                    >
                                         <Image
                                             src={imgSrc}
                                             alt={alt}
@@ -266,6 +310,60 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                     </span>
                 </button>
             </div >
+
+            {/* FULLSCREEN OVERLAY (Mobile/Tablet Only) - Swipeable Carousel */}
+            {isFullscreenOpen && (
+                <div
+                    className="fixed inset-0 z-50 bg-black flex flex-col animate-in fade-in duration-300"
+                >
+                    <button
+                        className="absolute top-8 right-8 p-3 border border-white/20 bg-black/50 text-white rounded-none z-100"
+                        onClick={() => setIsFullscreenOpen(false)}
+                    >
+                        <X size={20} />
+                    </button>
+
+                    <div className="flex-1 min-h-0 relative">
+                        <div className="embla h-full" ref={emblaFullRef}>
+                            <div className="embla__container h-full flex">
+                                {galleryImages.map((imgSrc, idx) => (
+                                    <div key={idx} className="embla__slide relative flex-[0_0_100%] h-full">
+                                        <Image
+                                            src={imgSrc}
+                                            alt={`${displayItem.title} - frame ${idx + 1}`}
+                                            fill
+                                            className="object-contain"
+                                            sizes="100vw"
+                                            priority={idx === 0}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        className="h-20 shrink-0 flex items-center justify-center bg-black/80 border-t border-white/5"
+                        onClick={() => setIsFullscreenOpen(false)}
+                    >
+                        <p className="font-mono text-[10px] text-white/40 uppercase tracking-[0.2em]">Swipe to navigate · Tap to close</p>
+                    </div>
+                </div>
+            )}
+
+            {/* PRELOADER - Forces browser to cache all gallery images immediately on modal open */}
+            <div className="hidden" aria-hidden="true">
+                {galleryImages.map((src, idx) => (
+                    <Image
+                        key={`preload-${idx}`}
+                        src={src}
+                        alt="preload"
+                        width={1}
+                        height={1}
+                        priority={idx < 5}
+                    />
+                ))}
+            </div>
         </div >
     );
 }
