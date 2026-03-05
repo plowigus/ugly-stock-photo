@@ -18,6 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://uglystockphoto.pl'),
   title: {
     default: "UGLY STOCK PHOTO | HC Photographer | Katowice",
     template: "%s | UGLY STOCK PHOTO"
@@ -32,10 +33,10 @@ export const metadata: Metadata = {
     telephone: false,
   },
   alternates: {
-    canonical: '/',
+    canonical: 'https://uglystockphoto.pl',
     languages: {
-      'pl-PL': '/pl',
-      'en-US': '/en',
+      'pl-PL': 'https://uglystockphoto.pl/pl',
+      'en-US': 'https://uglystockphoto.pl/en',
     },
   },
   openGraph: {
