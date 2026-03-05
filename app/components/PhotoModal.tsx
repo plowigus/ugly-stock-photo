@@ -206,7 +206,6 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                                             width={0}
                                             height={0}
                                             sizes="100vw"
-                                            unoptimized
                                             style={{ width: 'auto', height: '100%' }}
                                             className="block grayscale transition-all duration-500"
                                         />
