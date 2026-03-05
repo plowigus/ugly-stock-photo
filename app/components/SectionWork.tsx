@@ -14,62 +14,18 @@ function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 
-const WORKS: WorkItem[] = [
-    {
-        id: 7,
-        title: 'HIROSZYMA',
-        type: 'EXPERIMENTAL',
-        year: '2026',
-        about: 'Neon-infused shadows of a future that never arrived. A cinematic exploration of memory and light in the post-industrial landscape.',
-        src: '/1.jpg',
-        images: ['/1.jpg', '/2.jpg', '/3.jpg', '/4.jpg', '/5.jpg'],
-    },
-    {
-        id: 1,
-        title: 'MOSHPIT 01',
-        type: 'CONCERT',
-        year: '2024',
-        about: 'Raw energy captured in the heat of a hardcore punk concert. High contrast, grit, and movement blur.',
-        src: '/3.jpg',
-        srcAlt: '/4.jpg',
-    },
-    {
-        id: 2,
-        title: 'DECAY 04',
-        type: 'URBAN',
-        year: '2023',
-        about: 'The slow disintegration of architectural forms in forgotten industrial zones. A study of texture and time.',
-        src: '/5.jpg',
-    },
-    {
-        id: 3,
-        title: 'NOISE 09',
-        type: 'PORTRAIT',
-        year: '2024',
-        about: 'Identity lost in digital static. Distorted silhouettes exploring the boundary between signal and noise.',
-        src: 'https://images.unsplash.com/photo-1715759406117-76aeee4281a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncml0dHklMjB1cmJhbiUyMHRleHR1cmUlMjBibGFjayUyMGFuZCUyMHdoaXRlfGVufDF8fHx8MTc3MjU1NTczNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
-    },
-    {
-        id: 4,
-        title: 'STATIC 02',
-        type: 'ABSTRACT',
-        year: '2023',
-        about: 'Visual representations of electromagnetic interference. Sharp edges meeting soft gradients in high-key monochrome.',
-        src: 'https://images.unsplash.com/photo-1730508378933-b9f0607cebfe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYXJkY29yZSUyMHB1bmslMjBjb25jZXJ0JTIwYmxhY2slMjBhbmQlMjB3aGl0ZSUyMGhpZ2glMjBjb250cmFzdHxlbnwxfHx8fDE3NzI1NTU3MzR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-        srcAlt: 'https://images.unsplash.com/photo-1616797147704-7df2e256d397?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaXN0cmVzc2VkJTIwcG9ydHJhaXQlMjBibGFjayUyMGFuZCUyMHdoaXRlJTIwZWRneXxlbnwxfHx8fDE3NzI1NTU3MzV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
-    },
-];
+
 
 export function SectionWork() {
     const containerRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [activeModalIndex, setActiveModalIndex] = useState<number | null>(null);
-    const [works, setWorks] = useState<WorkItem[]>(WORKS);
+    const [works, setWorks] = useState<WorkItem[]>([]);
 
     const [emblaRef, emblaApi] = useEmblaCarousel({
         loop: true,
-        duration: 30, // Smoother glide
+        duration: 30,
         skipSnaps: false,
         align: 'center',
     });
@@ -124,7 +80,7 @@ export function SectionWork() {
             : null
     );
 
-    // Entry Animation
+
     useGSAP(() => {
         const tl = gsap.timeline({
             defaults: { ease: "power4.out", duration: 1 }

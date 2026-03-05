@@ -16,6 +16,9 @@ export interface WorkItem {
     about: string;
     src: string;
     srcAlt?: string;
+    venue?: string;
+    city?: string;
+    organizer?: string;
     images?: string[]; // Array for the gallery carousel
     imagesAlt?: string[]; // Alt SEO per image, parallel to images
 }
@@ -48,12 +51,10 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
         if (emblaApi) emblaApi.scrollTo(0);
     }, [activeIndex, emblaApi]);
 
-    // Obsługa klawiatury
+
     const handleKey = useCallback((e: KeyboardEvent) => {
         if (e.key === 'Escape') onClose();
         if (e.key === 'ArrowLeft') {
-            // If gallery is focused or we want standard prev? 
-            // For now, let's stick to project navigation, OR check if we have multiple images
             onPrev();
         }
         if (e.key === 'ArrowRight') onNext();
@@ -62,7 +63,7 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
     useEffect(() => {
         if (isOpen) {
             document.addEventListener('keydown', handleKey);
-            document.body.style.overflow = 'hidden'; // Blokada scrolla
+            document.body.style.overflow = 'hidden';
         }
         return () => {
             document.removeEventListener('keydown', handleKey);
@@ -70,12 +71,12 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
         };
     }, [isOpen, handleKey]);
 
-    // Synchronizacja displayItem dla efektu "fade out -> change -> fade in"
+
     useEffect(() => {
         if (item) setDisplayItem(item);
     }, [item]);
 
-    // Animacja wejścia całego modala
+
     useGSAP(() => {
         if (isOpen) {
             gsap.fromTo(modalRef.current,
@@ -142,17 +143,28 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                             [{displayItem.type}]
                         </p>
 
-                        <div className="mb-6">
-                            <p className="font-black text-xs uppercase tracking-widest mb-1 opacity-40">Year</p>
-                            <p className="font-mono text-sm text-neutral-300">{displayItem.year}</p>
-                        </div>
-
-                        <div>
-                            <p className="font-black text-xs uppercase tracking-widest mb-1 opacity-40">About</p>
-                            <p className="font-mono text-xs sm:text-sm text-neutral-400 leading-relaxed text-justify">
-                                {displayItem.about}
-                            </p>
-                        </div>
+                        {(displayItem.venue || displayItem.city || displayItem.organizer) && (
+                            <div className="mt-2  border-white/5 space-y-4">
+                                {displayItem.venue && (
+                                    <div>
+                                        <p className="font-black text-xs uppercase tracking-widest mb-1 opacity-40">Venue</p>
+                                        <p className="font-mono text-xs sm:text-sm text-neutral-300">{displayItem.venue}</p>
+                                    </div>
+                                )}
+                                {displayItem.city && (
+                                    <div>
+                                        <p className="font-black text-xs uppercase tracking-widest mb-1 opacity-40">City</p>
+                                        <p className="font-mono text-xs sm:text-sm text-neutral-300 uppercase">{displayItem.city}</p>
+                                    </div>
+                                )}
+                                {displayItem.organizer && (
+                                    <div>
+                                        <p className="font-black text-xs uppercase tracking-widest mb-1 opacity-40">Organizer</p>
+                                        <p className="font-mono text-xs sm:text-sm text-neutral-300">{displayItem.organizer}</p>
+                                    </div>
+                                )}
+                            </div>
+                        )}
                     </div>
 
                     <div className="mt-auto pt-10">
@@ -202,10 +214,10 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                         </div>
                     )}
                 </div>
-            </div>
+            </div >
 
             {/* ── BOTTOM BAR ── */}
-            <div className="shrink-0 flex items-center justify-between border-t border-neutral-800 bg-black">
+            < div className="shrink-0 flex items-center justify-between border-t border-neutral-800 bg-black" >
                 <button
                     onClick={onPrev}
                     className="flex-1 flex items-center gap-3 px-6 sm:px-8 py-5 hover:bg-neutral-900 transition-colors group border-r border-neutral-800 cursor-pointer"
@@ -235,7 +247,7 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                         NEXT →
                     </span>
                 </button>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }

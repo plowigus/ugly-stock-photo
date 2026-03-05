@@ -17,8 +17,10 @@ export default function WorkManagementPage() {
         title: "",
         type: "EXPERIMENTAL",
         year: new Date().getFullYear().toString(),
-        about: "",
         src: "",
+        venue: "",
+        city: "",
+        organizer: "",
         images: [],
         imagesAlt: [],
     });
@@ -26,8 +28,10 @@ export default function WorkManagementPage() {
         title: "",
         type: "",
         year: "",
-        about: "",
         src: "",
+        venue: "",
+        city: "",
+        organizer: "",
         images: [],
         imagesAlt: [],
     });
@@ -56,11 +60,14 @@ export default function WorkManagementPage() {
                 title: "",
                 type: "EXPERIMENTAL",
                 year: new Date().getFullYear().toString(),
-                about: "",
                 src: "",
                 srcAlt: "",
+                venue: "",
+                city: "",
+                organizer: "",
                 images: [],
-                imagesAlt: []
+                imagesAlt: [],
+                orderIndex: (works.length > 0 ? Math.max(...works.map(w => w.orderIndex)) + 1 : 0)
             });
             fetchWorks();
         }
@@ -78,11 +85,14 @@ export default function WorkManagementPage() {
             title: work.title,
             type: work.type,
             year: work.year,
-            about: work.about,
             src: work.src,
             srcAlt: work.srcAlt ?? "",
+            venue: work.venue ?? "",
+            city: work.city ?? "",
+            organizer: work.organizer ?? "",
             images: work.images ?? [],
             imagesAlt: (work as any).imagesAlt ?? [],
+            orderIndex: work.orderIndex,
         });
     }
 
@@ -92,10 +102,13 @@ export default function WorkManagementPage() {
             title: "",
             type: "",
             year: "",
-            about: "",
             src: "",
+            venue: "",
+            city: "",
+            organizer: "",
             images: [],
             imagesAlt: [],
+            orderIndex: 0,
         });
     }
 
@@ -126,6 +139,7 @@ export default function WorkManagementPage() {
             setIsSeeding(false);
         }
     }
+
 
     return (
         <div className="min-h-screen bg-black text-white p-6 md:p-8 animate-in fade-in duration-1000">
@@ -202,23 +216,55 @@ export default function WorkManagementPage() {
                                             onChange={e => setNewWork({ ...newWork, year: e.target.value })}
                                         />
                                     </div>
+                                    <div className="space-y-3">
+                                        <label className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30 italic">04 // ARRANGEMENT_INDEX</label>
+                                        <input
+                                            type="number"
+                                            className="w-full bg-white/5 border border-white/10 p-3 font-mono text-xs outline-none focus:border-white focus:bg-white/10 transition-all uppercase text-center"
+                                            value={newWork.orderIndex}
+                                            onChange={e => setNewWork({ ...newWork, orderIndex: parseInt(e.target.value) || 0 })}
+                                        />
+                                    </div>
                                 </div>
 
-                                <div className="space-y-3">
-                                    <label className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30 italic">04 // RAW_METADATA_DESCRIPTION</label>
-                                    <textarea
-                                        placeholder="INPUT DETAILED DATA LOG..."
-                                        className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs outline-none focus:border-white focus:bg-white/10 transition-all min-h-[120px] uppercase leading-relaxed resize-none placeholder:opacity-5"
-                                        value={newWork.about}
-                                        onChange={e => setNewWork({ ...newWork, about: e.target.value })}
-                                    />
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                    <div className="space-y-3">
+                                        <label className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30 italic">05 // VENUE_LOCATION</label>
+                                        <input
+                                            type="text"
+                                            placeholder="KLUB ZAŚCIANEK"
+                                            className="w-full bg-white/5 border border-white/10 p-3 font-mono text-xs outline-none focus:border-white focus:bg-white/10 transition-all uppercase"
+                                            value={newWork.venue || ""}
+                                            onChange={e => setNewWork({ ...newWork, venue: e.target.value })}
+                                        />
+                                    </div>
+                                    <div className="space-y-3">
+                                        <label className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30 italic">06 // CITY_ORIGIN</label>
+                                        <input
+                                            type="text"
+                                            placeholder="KRAKÓW"
+                                            className="w-full bg-white/5 border border-white/10 p-3 font-mono text-xs outline-none focus:border-white focus:bg-white/10 transition-all uppercase"
+                                            value={newWork.city || ""}
+                                            onChange={e => setNewWork({ ...newWork, city: e.target.value })}
+                                        />
+                                    </div>
+                                    <div className="space-y-3">
+                                        <label className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30 italic">07 // ORGANIZER_SOURCE</label>
+                                        <input
+                                            type="text"
+                                            placeholder="DANICING SHOES GIGS"
+                                            className="w-full bg-white/5 border border-white/10 p-3 font-mono text-xs outline-none focus:border-white focus:bg-white/10 transition-all uppercase"
+                                            value={newWork.organizer || ""}
+                                            onChange={e => setNewWork({ ...newWork, organizer: e.target.value })}
+                                        />
+                                    </div>
                                 </div>
                             </div>
 
                             {/* PRIMARY NODE SECTION - NOW AS A ROW */}
                             <div className="space-y-6">
                                 <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                                    <h4 className="text-sm font-black uppercase tracking-tighter italic">05 // PRIMARY_ENTRY_NODE</h4>
+                                    <h4 className="text-sm font-black uppercase tracking-tighter italic">08 // PRIMARY_ENTRY_NODE</h4>
                                     {!newWork.src && (
                                         <UploadButton
                                             endpoint="imageUploader"
@@ -279,7 +325,7 @@ export default function WorkManagementPage() {
                             <div className="space-y-6">
                                 <div className="flex items-center justify-between border-b border-white/10 pb-3">
                                     <h4 className="text-sm font-black uppercase tracking-tighter italic flex items-center gap-2">
-                                        06 // GALERIA ZDJĘĆ
+                                        09 // GALERIA ZDJĘĆ
                                         <span className="text-[9px] font-mono text-neutral-600 not-italic tracking-widest bg-white/5 px-2 py-0.5 border border-white/5">
                                             {newWork.images?.length || 0}
                                         </span>
@@ -416,22 +462,52 @@ export default function WorkManagementPage() {
                                             onChange={e => setEditWork({ ...editWork, year: e.target.value })}
                                         />
                                     </div>
+                                    <div className="space-y-3">
+                                        <label className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30 italic">04 // ARRANGEMENT_INDEX</label>
+                                        <input
+                                            type="number"
+                                            className="w-full bg-white/5 border border-white/10 p-3 font-mono text-xs outline-none focus:border-white focus:bg-white/10 transition-all uppercase text-center"
+                                            value={editWork.orderIndex}
+                                            onChange={e => setEditWork({ ...editWork, orderIndex: parseInt(e.target.value) || 0 })}
+                                        />
+                                    </div>
                                 </div>
 
-                                <div className="space-y-3">
-                                    <label className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30 italic">04 // RAW_METADATA_DESCRIPTION</label>
-                                    <textarea
-                                        className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs outline-none focus:border-white focus:bg-white/10 transition-all min-h-[120px] uppercase leading-relaxed resize-none"
-                                        value={editWork.about ?? ""}
-                                        onChange={e => setEditWork({ ...editWork, about: e.target.value })}
-                                    />
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                    <div className="space-y-3">
+                                        <label className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30 italic">05 // VENUE_LOCATION</label>
+                                        <input
+                                            type="text"
+                                            className="w-full bg-white/5 border border-white/10 p-3 font-mono text-xs outline-none focus:border-white focus:bg-white/10 transition-all uppercase"
+                                            value={editWork.venue ?? ""}
+                                            onChange={e => setEditWork({ ...editWork, venue: e.target.value })}
+                                        />
+                                    </div>
+                                    <div className="space-y-3">
+                                        <label className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30 italic">06 // CITY_ORIGIN</label>
+                                        <input
+                                            type="text"
+                                            className="w-full bg-white/5 border border-white/10 p-3 font-mono text-xs outline-none focus:border-white focus:bg-white/10 transition-all uppercase"
+                                            value={editWork.city ?? ""}
+                                            onChange={e => setEditWork({ ...editWork, city: e.target.value })}
+                                        />
+                                    </div>
+                                    <div className="space-y-3">
+                                        <label className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30 italic">07 // ORGANIZER_SOURCE</label>
+                                        <input
+                                            type="text"
+                                            className="w-full bg-white/5 border border-white/10 p-3 font-mono text-xs outline-none focus:border-white focus:bg-white/10 transition-all uppercase"
+                                            value={editWork.organizer ?? ""}
+                                            onChange={e => setEditWork({ ...editWork, organizer: e.target.value })}
+                                        />
+                                    </div>
                                 </div>
                             </div>
 
                             {/* PRIMARY NODE SECTION - NOW AS A ROW */}
                             <div className="space-y-6">
                                 <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                                    <h4 className="text-sm font-black uppercase tracking-tighter italic">05 // PRIMARY_ENTRY_NODE</h4>
+                                    <h4 className="text-sm font-black uppercase tracking-tighter italic">08 // PRIMARY_ENTRY_NODE</h4>
                                     <UploadButton
                                         endpoint="imageUploader"
                                         content={{
@@ -489,7 +565,7 @@ export default function WorkManagementPage() {
                             <div className="space-y-6">
                                 <div className="flex items-center justify-between border-b border-white/10 pb-3">
                                     <h4 className="text-sm font-black uppercase tracking-tighter italic flex items-center gap-2">
-                                        06 // GALERIA ZDJĘĆ
+                                        09 // GALERIA ZDJĘĆ
                                         <span className="text-[9px] font-mono text-neutral-500 not-italic tracking-widest bg-white/5 px-2 py-0.5 border border-white/5">
                                             {editWork.images?.length || 0}
                                         </span>
@@ -598,12 +674,15 @@ export default function WorkManagementPage() {
                                             <img src={work.src} alt={work.title} className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" />
                                         </div>
                                         <div className="space-y-1">
-                                            <h4 className="font-black uppercase tracking-tight text-lg italic leading-none">{work.title}</h4>
+                                            <div className="flex items-center justify-between mb-4">
+                                                <div className="flex items-center gap-4">
+                                                    <h3 className="font-black text-xs uppercase tracking-widest">{work.title}</h3>
+                                                </div>
+                                            </div>
                                             <div className="flex gap-3 items-center">
                                                 <span className="font-mono text-[9px] bg-white/10 text-white/60 px-2 py-0.5 font-bold uppercase tracking-widest">{work.type}</span>
                                                 <span className="font-mono text-[9px] text-neutral-600 uppercase tracking-widest">{work.year}</span>
                                             </div>
-                                            <p className="font-mono text-[8px] text-neutral-700 uppercase tracking-widest line-clamp-1 max-w-sm">{work.about}</p>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-2">
