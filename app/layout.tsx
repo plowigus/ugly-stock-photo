@@ -42,6 +42,7 @@ export const viewport = {
 };
 
 import { Providers } from "./components/Providers";
+import DeferredGA from "./components/DeferredGA";
 
 export default function RootLayout({
   children,
@@ -53,6 +54,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${jetbrainsMono.variable} antialiased`}
       >
+        <DeferredGA />
         <Providers>{children}</Providers>
       </body>
     </html>
