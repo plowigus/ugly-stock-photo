@@ -158,7 +158,7 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                     UGLYSTOCK — GALLERY VIEW
                 </span> */}
 
-                <div className="flex items-center gap-6 mx-auto sm:mx-0 sm:hidden">
+                <div className="flex items-center gap-6 mx-auto lg:mx-0 lg:hidden">
                     {items.map((_, i) => (
                         <div
                             key={i}
@@ -170,17 +170,17 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
 
                 <button
                     onClick={onClose}
-                    className="p-2 border border-neutral-800 hover:bg-white hover:text-black transition-colors ml-auto sm:ml-0 cursor-pointer"
+                    className="p-2 border border-neutral-800 hover:bg-white hover:text-black transition-colors ml-auto lg:ml-0 cursor-pointer"
                 >
                     <X size={13} strokeWidth={2} />
                 </button>
             </div>
 
 
-            <div ref={contentRef} className="flex-1 flex flex-col sm:flex-row overflow-hidden min-h-0">
+            <div ref={contentRef} className="flex-1 flex flex-col lg:flex-row overflow-hidden min-h-0">
 
 
-                <div className="shrink-0 w-full sm:w-80 md:w-[400px] border-b sm:border-b-0 sm:border-r border-neutral-800 flex flex-col justify-between p-8 sm:p-12 bg-[#050505]">
+                <div className="shrink-0 w-full lg:w-80 xl:w-[400px] border-b lg:border-b-0 lg:border-r border-neutral-800 flex flex-col justify-between p-8 sm:p-12 bg-[#050505]">
                     <div className="animate-slide flex flex-col gap-0">
                         <h2 className="font-black uppercase tracking-tighter text-2xl sm:text-3xl leading-tight mb-2 italic">
                             {displayItem.title}
@@ -214,7 +214,7 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                     </div>
 
                     <div className="mt-auto pt-10">
-                        <p className="font-mono text-[10px] text-neutral-700 hidden sm:block uppercase tracking-widest">
+                        <p className="font-mono text-[10px] text-neutral-700 hidden lg:block uppercase tracking-widest">
                             ← → Project Nav &nbsp;·&nbsp; ESC Close
                         </p>
                     </div>
@@ -236,7 +236,7 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                                         key={idx}
                                         className="embla__slide relative flex-[0_0_auto] h-full mx-0 cursor-pointer lg:cursor-default"
                                         onClick={() => {
-                                            if (window.innerWidth < 1024) {
+                                            if (window.innerWidth < 640) {
                                                 setIsFullscreenOpen(true);
                                                 setTimeout(() => {
                                                     emblaFullApi?.scrollTo(idx, true);
@@ -260,7 +260,7 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                     </div>
 
                     {galleryImages.length > 1 && (
-                        <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-6 pointer-events-none opacity-0 group-hover/gallery:opacity-100 transition-opacity">
+                        <div className="absolute inset-y-0 left-0 right-0 hidden lg:flex items-center justify-between px-6 pointer-events-none opacity-0 group-hover/gallery:opacity-100 transition-opacity">
                             <button
                                 onClick={(e) => { e.stopPropagation(); emblaApi?.scrollPrev(); }}
                                 className="p-4 bg-black/80 border border-neutral-800 text-white hover:bg-white hover:text-black transition-all cursor-pointer pointer-events-auto active:scale-95"
@@ -287,12 +287,12 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                     <span className="font-mono text-xs text-neutral-500 group-hover:text-white transition-colors uppercase tracking-widest">
                         ← PREV
                     </span>
-                    <span className="font-black text-xs sm:text-sm uppercase tracking-tight text-neutral-600 group-hover:text-white transition-colors truncate hidden sm:block">
+                    <span className="font-black text-xs sm:text-sm uppercase tracking-tight text-neutral-600 group-hover:text-white transition-colors truncate hidden lg:block">
                         {items[(activeIndex! - 1 + items.length) % items.length]?.title}
                     </span>
                 </button>
 
-                <div className="px-6 shrink-0 hidden sm:flex items-center">
+                <div className="px-6 shrink-0 hidden lg:flex items-center">
                     <span className="font-mono text-xs text-neutral-600 tabular-nums">
                         {String(activeIndex! + 1).padStart(2, '0')}&nbsp;/&nbsp;{String(items.length).padStart(2, '0')}
                     </span>
@@ -302,7 +302,7 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                     onClick={onNext}
                     className="flex-1 flex items-center justify-end gap-3 px-6 sm:px-8 py-5 hover:bg-neutral-900 transition-colors group border-l border-neutral-800 cursor-pointer"
                 >
-                    <span className="font-black text-xs sm:text-sm uppercase tracking-tight text-neutral-600 group-hover:text-white transition-colors truncate hidden sm:block">
+                    <span className="font-black text-xs sm:text-sm uppercase tracking-tight text-neutral-600 group-hover:text-white transition-colors truncate hidden lg:block">
                         {items[(activeIndex! + 1) % items.length]?.title}
                     </span>
                     <span className="font-mono text-xs text-neutral-500 group-hover:text-white transition-colors uppercase tracking-widest">

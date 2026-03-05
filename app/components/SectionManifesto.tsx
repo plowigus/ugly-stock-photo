@@ -74,9 +74,9 @@ export function SectionManifesto() {
 
                     <div
                         ref={contentRef}
-                        className="space-y-6 xl:space-y-8 font-mono text-base xl:text-xl leading-relaxed max-w-4xl"
+                        className="space-y-6 xl:space-y-8 font-mono text-base xl:text-xl leading-relaxed md:max-w-2xl lg:max-w-3xl xl:max-w-4xl"
                     >
-                        <p>
+                        <p className='md:max-w-xl lg:max-w-3xl xl:max-w-4xl'>
                             WE REJECT THE POLISHED LIES OF MODERN STOCK PHOTOGRAPHY.
                             NO SMILING IN SUITS. NO FAKE HANDSHAKES.
                             NO PERFECT LIGHTING.
