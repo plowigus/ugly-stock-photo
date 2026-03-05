@@ -194,7 +194,7 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                                 {displayItem.venue && (
                                     <div>
                                         <p className="font-black text-xs uppercase tracking-widest mb-1 opacity-40">Venue</p>
-                                        <p className="font-mono text-xs sm:text-sm text-neutral-300">{displayItem.venue}</p>
+                                        <p className="font-mono uppercase text-xs sm:text-sm text-neutral-300">{displayItem.venue}</p>
                                     </div>
                                 )}
                                 {displayItem.city && (
@@ -206,7 +206,7 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                                 {displayItem.organizer && (
                                     <div>
                                         <p className="font-black text-xs uppercase tracking-widest mb-1 opacity-40">Organizer</p>
-                                        <p className="font-mono text-xs sm:text-sm text-neutral-300">{displayItem.organizer}</p>
+                                        <p className="font-mono text-xs uppercase sm:text-sm text-neutral-300">{displayItem.organizer}</p>
                                     </div>
                                 )}
                             </div>

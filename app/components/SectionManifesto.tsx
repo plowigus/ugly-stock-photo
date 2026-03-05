@@ -77,14 +77,13 @@ export function SectionManifesto() {
                         className="space-y-6 xl:space-y-8 font-mono text-base xl:text-xl leading-relaxed md:max-w-2xl lg:max-w-3xl xl:max-w-4xl"
                     >
                         <p className='md:max-w-xl lg:max-w-3xl xl:max-w-4xl'>
-                            WE REJECT THE POLISHED LIES OF MODERN STOCK PHOTOGRAPHY.
-                            NO SMILING IN SUITS. NO FAKE HANDSHAKES.
-                            NO PERFECT LIGHTING.
-                        </p>
-                        <p>
-                            WE CAPTURE THE GRIT. THE SWEAT. THE NOISE.
+                            WE REJECT THE POLISHED LIES OF <br></br> MODERN STOCK PHOTOGRAPHY.<br />
+                            NO SMILING IN SUITS.<br /> NO FAKE HANDSHAKES.<br />
+                            NO PERFECT LIGHTING.<br />
+                            WE CAPTURE THE GRIT. <br />THE SWEAT. <br />THE NOISE.<br />
                             THE MOMENTS THAT BLEED.
                         </p>
+
                         <p className="border-b-2 border-white pb-2 inline-block">
                             UGLY IS HONEST. UGLY IS REAL.
                         </p>
