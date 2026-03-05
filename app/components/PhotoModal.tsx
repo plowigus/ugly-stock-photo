@@ -4,8 +4,9 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import useEmblaCarousel from 'embla-carousel-react';
+import { cn } from '@/lib/utils';
 
-// Rejestracja pluginu (opcjonalnie, jeśli używasz dodatków)
+
 gsap.registerPlugin(useGSAP);
 
 export interface WorkItem {
@@ -19,8 +20,8 @@ export interface WorkItem {
     venue?: string;
     city?: string;
     organizer?: string;
-    images?: string[]; // Array for the gallery carousel
-    imagesAlt?: string[]; // Alt SEO per image, parallel to images
+    images?: string[];
+    imagesAlt?: string[];
 }
 
 interface PhotoModalProps {
@@ -38,17 +39,29 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
     const modalRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
     const [displayItem, setDisplayItem] = useState<WorkItem | null>(null);
+    const [isDragging, setIsDragging] = useState(false);
 
-    // Embla setup for the internal gallery
     const [emblaRef, emblaApi] = useEmblaCarousel({
         loop: true,
         align: 'start',
         containScroll: 'trimSnaps'
     });
 
-    // Reset embla scroll when item changes
+
     useEffect(() => {
-        if (emblaApi) emblaApi.scrollTo(0);
+        if (!emblaApi) return;
+        emblaApi.scrollTo(0);
+
+        const onPointerDown = () => setIsDragging(true);
+        const onPointerUp = () => setIsDragging(false);
+
+        emblaApi.on('pointerDown', onPointerDown);
+        emblaApi.on('pointerUp', onPointerUp);
+
+        return () => {
+            emblaApi.off('pointerDown', onPointerDown);
+            emblaApi.off('pointerUp', onPointerUp);
+        };
     }, [activeIndex, emblaApi]);
 
 
@@ -86,7 +99,7 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
         }
     }, [isOpen]);
 
-    // Animacja zmiany treści (slajdów)
+
     useGSAP(() => {
         if (activeIndex !== null && contentRef.current) {
             const tl = gsap.timeline();
@@ -106,7 +119,7 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
             ref={modalRef}
             className="fixed inset-0 z-50 bg-black flex flex-col focus:outline-none"
         >
-            {/* ── TOP BAR ── */}
+
             <div className="shrink-0 flex items-center justify-between px-5 sm:px-8 py-4 border-b border-neutral-800">
                 <span className="font-mono text-xs text-neutral-500 uppercase tracking-widest hidden sm:block">
                     UGLYSTOCK — GALLERY VIEW
@@ -130,10 +143,10 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                 </button>
             </div>
 
-            {/* ── BODY ── */}
+
             <div ref={contentRef} className="flex-1 flex flex-col sm:flex-row overflow-hidden min-h-0">
 
-                {/* LEFT PANEL */}
+
                 <div className="shrink-0 w-full sm:w-80 md:w-[400px] border-b sm:border-b-0 sm:border-r border-neutral-800 flex flex-col justify-between p-8 sm:p-12 bg-[#050505]">
                     <div className="animate-slide flex flex-col gap-0">
                         <h2 className="font-black uppercase tracking-tighter text-2xl sm:text-3xl leading-tight mb-2 italic">
@@ -174,8 +187,11 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                     </div>
                 </div>
 
-                {/* RIGHT — INTERNAL GALLERY CAROUSEL (Film Strip Mode) */}
-                <div className="flex-1 relative overflow-hidden min-h-0 bg-black group/gallery">
+
+                <div className={cn(
+                    "flex-1 relative overflow-hidden min-h-0 bg-black group/gallery",
+                    isDragging ? "cursor-grabbing" : "cursor-grab"
+                )}>
                     <div className="embla h-full" ref={emblaRef}>
                         <div className="embla__container h-full flex items-start">
                             {galleryImages.map((imgSrc, idx) => {
@@ -184,11 +200,15 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                                     `${displayItem.title} - frame ${idx + 1}`;
                                 return (
                                     <div key={idx} className="embla__slide relative flex-[0_0_auto] h-full mx-0">
-                                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img
+                                        <Image
                                             src={imgSrc}
                                             alt={alt}
-                                            className="h-full w-auto block grayscale"
+                                            width={0}
+                                            height={0}
+                                            sizes="100vw"
+                                            unoptimized
+                                            style={{ width: 'auto', height: '100%' }}
+                                            className="block grayscale transition-all duration-500"
                                         />
                                     </div>
                                 );
@@ -196,7 +216,6 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                         </div>
                     </div>
 
-                    {/* OVERLAY GALLERY CONTROLS */}
                     {galleryImages.length > 1 && (
                         <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-6 pointer-events-none opacity-0 group-hover/gallery:opacity-100 transition-opacity">
                             <button
@@ -216,7 +235,7 @@ export function PhotoModal({ items, activeIndex, onClose, onPrev, onNext }: Phot
                 </div>
             </div >
 
-            {/* ── BOTTOM BAR ── */}
+
             < div className="shrink-0 flex items-center justify-between border-t border-neutral-800 bg-black" >
                 <button
                     onClick={onPrev}
