@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -20,11 +21,18 @@ export function SectionExpertise() {
     const containerRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
     const listRef = useRef<HTMLDivElement>(null);
+    const bgRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
         const tl = gsap.timeline({
             defaults: { ease: "power4.out", duration: 1 }
         });
+
+        // Tło
+        tl.fromTo(bgRef.current,
+            { opacity: 0, scale: 1.05 },
+            { opacity: 0.3, scale: 1, duration: 0.5 }
+        );
 
         // Animacja tytułu
         tl.fromTo(titleRef.current,
@@ -53,7 +61,18 @@ export function SectionExpertise() {
             ref={containerRef}
             className="relative w-full h-full flex flex-col p-6 xl:p-12 bg-black text-white overflow-hidden"
         >
-            <div className="max-w-6xl mx-auto w-full h-full overflow-hidden no-scrollbar">
+            {/* Background Image */}
+            <div ref={bgRef} className="absolute inset-0 z-0 opacity-30 select-none pointer-events-none">
+                <Image
+                    src="/collab-photo.jpg"
+                    alt="UGLY STOCK PHOTO - Współpraca - Fotografia koncertowa"
+                    fill
+                    className="object-cover grayscale contrast-125"
+                />
+                <div className="absolute inset-0 bg-black/20 mix-blend-multiply" />
+            </div>
+
+            <div className="relative z-10 max-w-6xl mx-auto w-full h-full overflow-hidden no-scrollbar">
                 <div className="py-8 flex flex-col h-full">
                     <div className="flex justify-between items-end mb-8 xl:mb-16">
                         <h2

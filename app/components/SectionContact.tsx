@@ -61,7 +61,7 @@ export function SectionContact() {
             {/* Background Image */}
             <div ref={bgRef} className="absolute inset-0  z-0 opacity-30 select-none pointer-events-none">
                 <Image
-                    src="/contact-photo.jpg"
+                    src="/contact.jpg"
                     alt="UGLY STOCK PHOTO - Kontakt - Sesje zdjęciowe dla zespołów Katowice"
                     fill
                     className="object-cover contrast-100"
