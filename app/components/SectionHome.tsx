@@ -51,11 +51,10 @@ export function SectionHome() {
             <div className="relative z-10 flex flex-col h-full justify-between pointer-events-none overflow-hidden no-scrollbar">
                 <div ref={titleRef} className="uppercase tracking-tighter pt-4">
                     <h1
-                        className="text-6xl sm:text-8xl leading-none tracking-tighter"
+                        className="text-6xl sm:text-8xl leading-none tracking-tight font-black xl:tracking-[-6px] xl:leading-[90%]"
                         style={{
-                            fontFamily: "'ToughHorror', sans-serif",
                             fontSize: 'clamp(5.5rem, 15vw, 160px)',
-                            letterSpacing: 'clamp(0px, 1.5vw, 12px)',
+                            letterSpacing: 'clamp(0px, 1.5vw, 0px)',
                         }}
                     >
                         UGLY
