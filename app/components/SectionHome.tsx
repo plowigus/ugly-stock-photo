@@ -42,7 +42,7 @@ export function SectionHome() {
                     src="/hero_photo.jpg"
                     alt="UGLY STOCK PHOTO - Fotograf koncertowy Katowice | HC | Raw Gig | Photography"
                     fill
-                    priority
+                    fetchPriority="high"
                     className="object-cover grayscale contrast-125 brightness-100"
                 />
                 <div className="absolute inset-0 bg-black/25 mix-blend-multiply" />
