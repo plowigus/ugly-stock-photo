@@ -74,18 +74,45 @@ export function SectionManifesto() {
 
                     <div
                         ref={contentRef}
-                        className="space-y-6 xl:space-y-8 font-mono text-base xl:text-xl leading-relaxed md:max-w-2xl lg:max-w-3xl xl:max-w-4xl"
+                        className="space-y-3 xl:space-y-4 font-mono text-xs xl:text-sm leading-tight md:max-w-xl lg:max-w-2xl xl:max-w-3xl"
                     >
-                        <p className='md:max-w-xl lg:max-w-3xl xl:max-w-4xl'>
-                            WE REJECT THE POLISHED LIES OF <br></br> MODERN STOCK PHOTOGRAPHY.<br />
-                            NO SMILING IN SUITS.<br /> NO FAKE HANDSHAKES.<br />
-                            NO PERFECT LIGHTING.<br />
-                            WE CAPTURE THE GRIT. <br />THE SWEAT. <br />THE NOISE.<br />
+                        <p className="uppercase tracking-wide">
+                            I REJECT THE POLISHED LIES<br />
+                            OF MODERN PHOTOGRAPHY.
+                        </p>
+
+                        <p className="uppercase tracking-wide">
+                            NO SMILES IN SUITS.<br />
+                            NO STAGED HANDSHAKES.<br />
+                            NO PERFECT LIGHT.<br />
+                            NO CORPORATE FANTASIES.
+                        </p>
+
+                        <p className="uppercase tracking-wide">
+                            I DON’T SHOOT PERFECTION.<br />
+                            I HUNT TRUTH.
+                        </p>
+
+                        <p className="uppercase tracking-wide">
+                            THE GRIT.<br />
+                            THE SWEAT.<br />
+                            THE NOISE.<br />
+                            THE CHAOS.<br />
                             THE MOMENTS THAT BLEED.
                         </p>
 
-                        <p className="border-b-2 border-white pb-2 inline-block">
-                            UGLY IS HONEST. UGLY IS REAL.
+                        <p className="uppercase tracking-wide">
+                            LIVE GIGS AREN’T CLEAN.<br />
+                            LIVE GIGS AREN’T PRETTY.
+                        </p>
+
+                        <p className="uppercase tracking-wide  text-white py-1 inline-block">
+                            UGLY IS HONEST.<br />
+                            UGLY IS REAL.
+                        </p>
+
+                        <p className="text-xs xl:text-sm pt-4 opacity-60">
+                            — Arkadiusz Łowigus / Ugly Stock Photo
                         </p>
                     </div>
                 </div>
