@@ -63,7 +63,7 @@ export function SectionManifesto() {
 
             <div className="max-w-6xl mx-auto w-full h-full overflow-hidden no-scrollbar">
                 <div className="py-8 flex flex-col h-full">
-                    <div className="flex justify-between items-end mb-8 xl:mb-16">
+                    <div className="flex justify-between items-end mb-4 xl:mb-16">
                         <h2
                             ref={titleRef}
                             className="text-5xl sm:text-6xl xl:text-8xl font-black uppercase tracking-tighter"
@@ -93,7 +93,12 @@ export function SectionManifesto() {
                             I HUNT TRUTH.
                         </p>
 
-                        <p className="uppercase tracking-wide">
+                        <p className="uppercase tracking-wide block md:hidden">
+                            THE GRIT.THE SWEAT.<br />
+                            THE NOISE.THE CHAOS.<br />
+                            THE MOMENTS THAT BLEED.
+                        </p>
+                        <p className="uppercase tracking-wide hidden md:block">
                             THE GRIT.<br />
                             THE SWEAT.<br />
                             THE NOISE.<br />
@@ -111,7 +116,7 @@ export function SectionManifesto() {
                             UGLY IS REAL.
                         </p>
 
-                        <p className="text-xs xl:text-sm pt-4 opacity-60">
+                        <p className="text-xs xl:text-sm pt-1 xl:pt-4 opacity-60">
                             — Arkadiusz Łowigus / Ugly Stock Photo
                         </p>
                     </div>
