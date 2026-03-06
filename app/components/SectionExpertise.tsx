@@ -13,7 +13,6 @@ interface Service {
 const SERVICES: Service[] = [
     { title: 'Live Coverage', desc: 'Moshpits, stages, backstage chaos.' },
     { title: 'Band Portraits', desc: 'No posing. Just attitude.' },
-    { title: 'Album Art', desc: 'Gritty textures and raw visuals.' },
     { title: 'Tour Documentary', desc: 'Life on the road, unfiltered.' },
 ];
 
